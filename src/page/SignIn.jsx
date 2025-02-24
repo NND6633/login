@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Input, Button, message } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import PasswordInput from '../components/PasswordInput';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -29,7 +29,11 @@ const SignIn = () => {
       message.error('Please fix the errors');
     }
   };
-
+  // Tính năng đăng nhập với Google (dummy):
+  const handleGoogleLogin = () => {
+    // TODO: Tích hợp Google OAuth
+    message.info('Login with Google clicked!');
+  };
   return (
     <div className="flex min-h-screen">
       {/* Left: Illustration */}
@@ -37,7 +41,7 @@ const SignIn = () => {
         <img
           src="./image/signin.jpg"
           alt="Signup Illustration"
-          className="w-full h-[100vh] object-cover"
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -68,7 +72,22 @@ const SignIn = () => {
             <p className="text-center text-gray-500 max-w-xs leading-6">
               ITEL is your companion and powerful assistant in the IT industry.
             </p>
+            {/* Google Login Button */}
+            <Button
+              onClick={handleGoogleLogin}
+              className="flex items-center justify-center w-full rounded-md border border-[#d3d3d3] py-2 text-blue-600 hover:border-[#c0c0c0]"
+              icon={<span className="mr-2">+</span>}
+            >
+              Sign In with Google
+            </Button>
 
+
+            {/* Hoặc thêm khoảng trống và chữ "Or login with email" */}
+            <div className="flex items-center justify-center">
+              <div className="w-1/4 h-px bg-gray-300" />
+              <span className="mx-2 text-gray-400 text-sm">Or login with email</span>
+              <div className="w-1/4 h-px bg-gray-300" />
+            </div>
             {/* Username Input */}
             <div>
               <p className="text-left font-semibold">User name</p>
@@ -82,13 +101,18 @@ const SignIn = () => {
               {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
             </div>
 
-            {/* Password Input Component */}
-            <PasswordInput
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={errors.password}
-              placeholder="Enter password"
-            />
+            {/* Password Input */}
+            <div>
+              <p className="text-left font-semibold">Password</p>
+              <Input.Password
+                placeholder="Enter password"
+                className={`rounded-full ${errors.password ? 'border-red-500' : ''}`}
+                iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+            </div>
 
             {/* Remember Me & Forgot Password */}
             <div className="flex justify-between items-center w-full">

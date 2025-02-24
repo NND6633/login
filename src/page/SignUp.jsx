@@ -33,7 +33,11 @@ const SignUp = () => {
       message.error('Please fix the errors');
     }
   };
-
+    // Tính năng đăng nhập với Google (dummy):
+    const handleGoogleLogin = () => {
+      // TODO: Tích hợp Google OAuth
+      message.info('Login with Google clicked!');
+    };
   return (
     <div className="flex flex-row min-h-screen">
       <div className="hidden md:flex items-center justify-center w-1/2 bg-gray-100">
@@ -53,6 +57,21 @@ const SignUp = () => {
               </div>
             </div>
             <p className="text-gray-500 max-w-xs mx-auto">ITEL is your companion and powerful assistant in the IT industry.</p>
+            {/* Google Login Button */}
+            <Button
+              onClick={handleGoogleLogin}
+              className="flex items-center justify-center w-full rounded-md border border-[#d3d3d3] py-2 text-blue-600 hover:border-[#c0c0c0]"
+              icon={<span className="mr-2">+</span>}
+            >
+              Sign Up with Google
+            </Button>
+
+            {/* Hoặc thêm khoảng trống và chữ "Or login with email" */}
+            <div className="flex items-center justify-center">
+              <div className="w-1/4 h-px bg-gray-300" />
+              <span className="mx-2 text-gray-400 text-sm">Or login with email</span>
+              <div className="w-1/4 h-px bg-gray-300" />
+            </div>
             <div>
               <p className="text-left font-semibold">Email Address</p>
               <Input type="text" placeholder="Enter your Email Address" className="rounded-full" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
@@ -71,7 +90,15 @@ const SignUp = () => {
             <Button onClick={handleSignUp} className="w-32 bg-purple-600 text-white hover:bg-purple-700 rounded-full">
               Sign Up
             </Button>
+            <div>
+              <p className="text-left text-xs text-gray-500">
+                By clicking 'Continue', you acknowledge that you have read and accept the&nbsp;
+                <a href="/terms" className="text-blue-600 underline">Terms of Service</a> and&nbsp;
+                <a href="/privacy" className="text-blue-600 underline">Privacy Policy</a>.
+              </p>
+            </div>
           </div>
+          
         </Card>
       </div>
     </div>
