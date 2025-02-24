@@ -41,7 +41,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-row min-h-screen">
       <div className="hidden md:flex items-center justify-center w-1/2 bg-gray-100">
-        <img src="./image/signup.jpg" alt="Signup Illustration" className="w-full h-[100vh] object-cover" />
+        <img src="./image/signup.jpg" alt="Signup Illustration" className="w-full h-full object-cover" />
       </div>
       <div className="flex flex-1 items-center justify-center min-h-screen p-8">
         <Card title="Welcome to ITEL...!" className="w-full max-w-md text-center border-0">
