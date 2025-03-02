@@ -1,33 +1,16 @@
 {
   "users": [
     {
-      "id": "1",
-      "email": "user@example.com",
-      "username": "user123",
-      "password": "password123"
+      "id": 1,
+      "username": "username 1",
+      "email": "email 1",
+      "password": "password 1"
     },
     {
-      "id": "0112",
-      "username": "dung",
-      "password": "12345678"
-    },
-    {
-      "id": "f3b9",
-      "username": "dugn",
-      "email": "dung2@",
-      "password": "12345678"
-    },
-    {
-      "id": "125e",
-      "username": "dung8",
-      "email": "dung@",
-      "password": "12345678"
-    },
-    {
-      "id": "44ba",
-      "username": "dung",
-      "email": "dung@",
-      "password": "12345678"
+      "id": 2,
+      "username": "username 2",
+      "email": "email 2",
+      "password": "password 2"
     }
   ]
 }

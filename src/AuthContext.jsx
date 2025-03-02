@@ -38,17 +38,24 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (newUser) => {
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
-      alert("Registration successful");
-      navigate("/"); 
+  
+      if (res.ok) {
+        const addedUser = await res.json(); // Nhận lại dữ liệu người dùng đã được thêm
+        alert("Đăng ký thành công");
+        navigate("/"); // Chuyển hướng về trang đăng nhập
+      } else {
+        alert("Đăng ký không thành công");
+      }
     } catch (error) {
-      console.error("Register error:", error);
+      console.error("Lỗi đăng ký:", error);
     }
   };
+  
 
   const logout = () => {
     localStorage.removeItem("token");
