@@ -36,17 +36,25 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (newUser) => {
     try {
-      await fetch(API_URL, {
+      const res = await fetch("https://67c3acde89e47db83dd23f18.mockapi.io/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
+  
+      if (!res.ok) throw new Error("Registration failed");
+  
+      const createdUser = await res.json();
+      setUser(createdUser);  // ✅ Cập nhật user mới
+      console.log("User created:", createdUser);
+  
       alert("Registration successful");
-      navigate("/");
+      navigate("/profile"); // ✅ Chuyển hướng đến profile
     } catch (error) {
       console.error("Register error:", error);
     }
   };
+  
 
   const logout = () => {
     localStorage.removeItem("token");
