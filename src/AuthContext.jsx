@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/users"; // ✅ Đổi API URL
+  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/:endpoint"; // ✅ Đổi API URL
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (newUser) => {
     try {
-      const res = await fetch("https://67c3acde89e47db83dd23f18.mockapi.io/users", {
+      const res = await fetch("https://67c3acde89e47db83dd23f18.mockapi.io/:endpoint", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
