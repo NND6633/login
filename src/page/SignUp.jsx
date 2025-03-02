@@ -55,7 +55,9 @@ const SignUp = () => {
             {/* Sign In / Sign Up Toggle */}
             <div className="flex justify-center w-full">
               <div className="flex w-64 justify-center items-center rounded-full overflow-hidden bg-gradient-to-r from-purple-300 to-purple-400 p-0.5">
-                <Button className="w-1/2 bg-purple-600 text-white font-semibold hover:bg-purple-700 rounded-full text-xs py-1">
+                <Button 
+                  onClick={() => navigate("/signin")}
+                  className="w-1/2 bg-purple-600 text-white font-semibold hover:bg-purple-700 rounded-full text-xs py-1">
                   Sign In
                 </Button>
                 <Button
@@ -89,9 +91,6 @@ const SignUp = () => {
             <Button onClick={handleSignUp} className="w-32 bg-purple-600 text-white hover:bg-purple-700 rounded-full">
               Sign Up
             </Button>
-            <p>
-              Already have an account? <span className="text-blue-500 cursor-pointer" onClick={() => navigate("/")}>Sign In</span>
-            </p>
           </div>
         </Card>
       </div>
