@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   // Updated MockAPI URL
-  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/users";
+  const API_URL = "https://json-server-8ruu.onrender.com/";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
