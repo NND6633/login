@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserProfile = async (token) => {
     try {
-      const res = await fetch(`https://mockapi.io/clone/67c3acde89e47db83dd23f19`);
+      const res = await fetch(`http://localhost:3000/users/${token}`);
       if (!res.ok) throw new Error("User not found"); // ⛔ Kiểm tra nếu token không hợp lệ
       const userData = await res.json();
       setUser(userData);
