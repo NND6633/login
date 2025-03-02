@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/users"; // ✅ Đổi API URL
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -16,18 +17,18 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const res = await fetch("http://localhost:3000/users");
+      const res = await fetch(API_URL);
       const users = await res.json();
       const foundUser = users.find(u => u.username === username && u.password === password);
 
       if (!foundUser) {
         alert("Invalid credentials");
-        return; // ⛔ Ngăn chặn lưu token nếu sai thông tin
+        return;
       }
 
       localStorage.setItem("token", foundUser.id);
       setUser(foundUser);
-      navigate("/profile");  // ✅ Chuyển hướng sau khi đăng nhập thành công
+      navigate("/profile");
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -35,13 +36,13 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (newUser) => {
     try {
-      await fetch("http://localhost:3000/users", {
+      await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
       alert("Registration successful");
-      navigate("/");  // ✅ Chuyển hướng về Sign In sau khi đăng ký
+      navigate("/");
     } catch (error) {
       console.error("Register error:", error);
     }
@@ -55,13 +56,13 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserProfile = async (token) => {
     try {
-      const res = await fetch(`http://localhost:3000/users/${token}`);
-      if (!res.ok) throw new Error("User not found"); // ⛔ Kiểm tra nếu token không hợp lệ
+      const res = await fetch(`${API_URL}/${token}`); // ✅ Fetch theo ID
+      if (!res.ok) throw new Error("User not found");
       const userData = await res.json();
       setUser(userData);
     } catch (error) {
       console.error("Fetch profile error:", error);
-      logout(); // ⛔ Nếu lỗi, đăng xuất người dùng
+      logout();
     }
   };
 
