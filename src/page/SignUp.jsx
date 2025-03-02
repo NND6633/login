@@ -52,6 +52,20 @@ const SignUp = () => {
       <div className="flex flex-1 items-center justify-center min-h-screen p-8">
         <Card title="Welcome to ITEL...!" className="w-full max-w-md text-center border-0">
           <div className="space-y-4">
+            {/* Sign In / Sign Up Toggle */}
+            <div className="flex justify-center w-full">
+              <div className="flex w-64 justify-center items-center rounded-full overflow-hidden bg-gradient-to-r from-purple-300 to-purple-400 p-0.5">
+                <Button className="w-1/2 bg-purple-600 text-white font-semibold hover:bg-purple-700 rounded-full text-xs py-1">
+                  Sign In
+                </Button>
+                <Button
+                  onClick={() => navigate("/signup")}
+                  className="w-1/2 bg-transparent text-white font-semibold hover:bg-purple-100 rounded-full text-xs py-1"
+                >
+                  Sign Up
+                </Button>
+              </div>
+            </div>
             <div>
               <p className="text-left font-semibold">Email Address</p>
               <Input type="text" placeholder="Enter your Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
