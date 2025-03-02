@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/users"; // ✅ Đổi API URL
+  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/user"; // ✅ Đổi API URL
 
   useEffect(() => {
     const token = localStorage.getItem("token");
