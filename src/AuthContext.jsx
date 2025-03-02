@@ -6,7 +6,6 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const API_URL = "https://67c3acde89e47db83dd23f18.mockapi.io/user"; // ✅ Đổi API URL
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -17,18 +16,18 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch("http://localhost:3000/users");
       const users = await res.json();
       const foundUser = users.find(u => u.username === username && u.password === password);
 
       if (!foundUser) {
         alert("Invalid credentials");
-        return;
+        return; // ⛔ Ngăn chặn lưu token nếu sai thông tin
       }
 
       localStorage.setItem("token", foundUser.id);
       setUser(foundUser);
-      navigate("/profile");
+      navigate("/profile");  // ✅ Chuyển hướng sau khi đăng nhập thành công
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -36,25 +35,17 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (newUser) => {
     try {
-      const res = await fetch("https://67c3acde89e47db83dd23f18.mockapi.io/user", {
+      await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
-  
-      if (!res.ok) throw new Error("Registration failed");
-  
-      const createdUser = await res.json();
-      setUser(createdUser);  // ✅ Cập nhật user mới
-      console.log("User created:", createdUser);
-  
       alert("Registration successful");
-      navigate("/profile"); // ✅ Chuyển hướng đến profile
+      navigate("/");  // ✅ Chuyển hướng về Sign In sau khi đăng ký
     } catch (error) {
       console.error("Register error:", error);
     }
   };
-  
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -64,13 +55,13 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserProfile = async (token) => {
     try {
-      const res = await fetch(`${API_URL}/${token}`); // ✅ Fetch theo ID
-      if (!res.ok) throw new Error("User not found");
+      const res = await fetch(`http://localhost:3000/users/${token}`);
+      if (!res.ok) throw new Error("User not found"); // ⛔ Kiểm tra nếu token không hợp lệ
       const userData = await res.json();
       setUser(userData);
     } catch (error) {
       console.error("Fetch profile error:", error);
-      logout();
+      logout(); // ⛔ Nếu lỗi, đăng xuất người dùng
     }
   };
 
