@@ -55,15 +55,13 @@ const SignUp = () => {
             {/* Sign In / Sign Up Toggle */}
             <div className="flex justify-center w-full">
               <div className="flex w-64 justify-center items-center rounded-full overflow-hidden bg-gradient-to-r from-purple-300 to-purple-400 p-0.5">
-                <Button 
-                  onClick={() => navigate("/signin")}
-                  className="w-1/2 bg-purple-600 text-white font-semibold hover:bg-purple-700 rounded-full text-xs py-1">
-                  Sign In
-                </Button>
                 <Button
-                  onClick={() => navigate("/signup")}
+                  onClick={() => navigate('/')}
                   className="w-1/2 bg-transparent text-white font-semibold hover:bg-purple-100 rounded-full text-xs py-1"
                 >
+                  Sign In
+                </Button>
+                <Button className="w-1/2 bg-purple-600 text-white font-semibold hover:bg-purple-700 rounded-full text-xs py-1">
                   Sign Up
                 </Button>
               </div>
