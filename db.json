@@ -22,6 +22,12 @@
       "username": "dung8",
       "email": "dung@",
       "password": "12345678"
+    },
+    {
+      "id": "44ba",
+      "username": "dung",
+      "email": "dung@",
+      "password": "12345678"
     }
   ]
 }
